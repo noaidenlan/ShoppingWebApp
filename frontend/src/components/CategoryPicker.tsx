@@ -15,16 +15,21 @@ export default function CategoryPicker({ selected, onChange }: Props) {
           <button
             key={cat.id}
             onClick={() => onChange(cat.id)}
-            className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all text-center cursor-pointer
+            className={`group relative flex flex-col items-center gap-2.5 p-4 rounded-2xl border-2 transition-all duration-200 text-center cursor-pointer focus:outline-none
               ${isSelected
-                ? 'border-blue-600 bg-blue-50 shadow-md'
-                : 'border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50/40'
+                ? 'border-navy-600 bg-navy-600 shadow-glow'
+                : 'border-slate-200 bg-white hover:border-navy-300 hover:bg-navy-50 shadow-sm hover:shadow-card'
               }`}
           >
-            <span className="text-2xl">{cat.icon}</span>
-            <span className={`text-xs font-medium leading-tight ${isSelected ? 'text-blue-700' : 'text-gray-700'}`}>
+            <span className={`text-2xl transition-transform duration-200 ${isSelected ? 'scale-110' : 'group-hover:scale-110'}`}>
+              {cat.icon}
+            </span>
+            <span className={`text-xs font-semibold leading-tight ${isSelected ? 'text-white' : 'text-slate-700'}`}>
               {cat.label}
             </span>
+            {isSelected && (
+              <span className="absolute top-2 right-2 w-2 h-2 bg-white rounded-full opacity-80" />
+            )}
           </button>
         );
       })}
